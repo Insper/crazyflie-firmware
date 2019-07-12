@@ -11,13 +11,14 @@ The source code is organized as follows:
 ./                                | Root
  main.cpp                         | Main program
  + programs                       | Program files
- |  + examples                    | Simple examples
+ |  + examples                    | Examples
  |  + labs                        | Labs
  + src                            | Source files
  |  + drivers                     | Sensor drivers
  |  + modules                     | Controller modules
  |  + utils                       | Utility files
- + mbed-os                        | ARM Mbed OS source files (automatically imported)
+ + mbed-os                        | ARM Mbed OS library (automatically imported)
+ + USBDevice                      | USB Device library (automatically imported)
 ```
 
 ## Fork
