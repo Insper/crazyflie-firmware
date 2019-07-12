@@ -2,4 +2,4 @@
 *.DS_Store
 BUILD
 mbed-os
-USBDEVICE
+USBDevice
