@@ -1,6 +1,6 @@
 # Bitcraze Crazyflie 2.0 Firmware  
 
-This repository contains the source code for the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) firmware utilizing [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/)
+This repository contains the source code for the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) firmware utilizing [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/).
 
 
 ## Source code
