@@ -33,14 +33,14 @@ Next step is to set the target you'll be utilizing, that's it, the microcontroll
 
 ### D) Build
 
-Now you're reade to build your program, in other words, to create an binary file:
+Now you're ready to build your program, in other words, to create an binary file from your source code:
 
 1. Click on ```Build program```
 
 
 ### E) Flash
 
-Last step is to send this binary file to your microcontroller, which is called flash. This can be done wirellesly you will need an [Bitcraze Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/) (hardware) and the [crazyflie-clients-python](https://github.com/bitcraze/crazyflie-clients-python) (software):
+Last step is to send this binary file to your microcontroller, which is called flash. This can be done wirellesly with an [Bitcraze Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/), an USB radio dongle, and the [crazyflie-clients-python](https://github.com/bitcraze/crazyflie-clients-python), an PC client:
 
 1. Install [crazyflie-clients-python](https://github.com/bitcraze/crazyflie-clients-python)
 2. Plug in the [Bitcraze Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/)
