@@ -4,13 +4,13 @@ This repository contains the source code for the [Bitcraze Crazyflie 2.0](https:
 
 ## Installing
 
-### Fork
+### A) Fork
 
 The first step is to fork this repository, which means to create a copy of this repository in your own account:
 
 1. Click on ```Fork```
 
-### Import
+### B) Import
 
 After you have forked the repository, you should import it to [Mbed Studio](https://os.mbed.com/studio/) (program):
 
@@ -18,7 +18,7 @@ After you have forked the repository, you should import it to [Mbed Studio](http
 2. Click on ```File```>```Import Program...```
 3. Paste ```https://github.com/user_name/crazyflie-firmware/``` under ```URL``` and then click ```Add Program```
 
-### Target
+### C) Target
 
 The microcontroller from [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) ([STM32F405RG](https://www.st.com/en/microcontrollers-microprocessors/stm32f405rg.html)) is not available for [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/). However, the microcontroller from [Seeed Arch Max](https://os.mbed.com/platforms/Seeed-Arch-Max/) development board ([STM32F407VE](https://www.st.com/en/microcontrollers-microprocessors/stm32f407ve.html)) is very similar and can be utilized with little adjustments:
 
@@ -31,14 +31,14 @@ The microcontroller from [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyf
 
 ```{PB_11, PWM_2, STM_PIN_DATA_EXT(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF1_TIM1, 4, 0)},  // TIM2_CH4```
 
-### Build
+### D) Build
 
 To build the program is very simple:
 
 1. Click on ```Build program```
 
 
-### Flash
+### E) Flash
 
 To flash the firmware wirellesly you will need an [Bitcraze Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/) (hardware) and the [crazyflie-clients-python](https://github.com/bitcraze/crazyflie-clients-python) (software):
 
