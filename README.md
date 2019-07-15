@@ -2,7 +2,7 @@
 
 This repository contains the source code for the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) firmware utilizing [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/).
 
-## Installing
+## How to used it
 
 ### A) Fork
 
@@ -50,7 +50,7 @@ Last step is to send this binary file to your microcontroller, which is called f
 - Release the push button button
 4. Open console (```CRTL```+``` ` ```), change directory to where the project is located (```cd crazyflie-firmware```) and type ```make flash```
 
-## Source code
+## How to organized
 
 The source code is organized as follows:
 
