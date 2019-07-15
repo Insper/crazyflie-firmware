@@ -27,7 +27,7 @@ Next step is to set the target you'll be utilizing, that's it, the microcontroll
 
 ```  #define MBED_APP_START 0x08004000```
 
-3. Navigate to file ```mbed-os``` > ```targets``` > ```TARGET_STM``` > ```TARGET_STM32F4``` > ```TARGET_STM32F446xE``` > ```TARGET_ARCH_MAX``` > ```PeripheralPins.c``` and add a line of code between lines 135 and 136: 
+3. Navigate to file ```mbed-os``` > ```targets``` > ```TARGET_STM``` > ```TARGET_STM32F4``` > ```TARGET_STM32F407xG``` > ```TARGET_ARCH_MAX``` > ```PeripheralPins.c``` and add a line of code between lines 135 and 136: 
 
 ```{PB_11, PWM_2, STM_PIN_DATA_EXT(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF1_TIM1, 4, 0)},  // TIM2_CH4```
 
