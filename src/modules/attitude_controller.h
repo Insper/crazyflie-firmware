@@ -2,7 +2,7 @@
 #define attitude_controller_h
 
 #include "mbed.h"
-#include "parameters.h"
+#include "src/utils/parameters.h"
 
 // Attitude controller class
 class AttitudeController
@@ -15,8 +15,8 @@ class AttitudeController
     // Torques (N.m)
     float tau_phi, tau_theta, tau_psi;
   private:
-    // Control torque (N.m) given reference angle (rad) and current angle (rad) and angular velocity (rad/s) with given controller gains and moment of inertia (kg.m^2)
-    float control_state_regulator(float angle_r, float angle, float rate, float kp, float kd, float I);
+    // Control torque (N.m) given reference angle (rad) and current angle (rad) and angular velocity (rad/s) with given controller gains
+    float control_siso(float angle_r, float angle, float rate, float kp, float kd);
 };
 
 #endif

@@ -2,8 +2,8 @@
 #define vertical_estimator_h
 
 #include "mbed.h"
-#include "parameters.h"
-#include "vl53l0x.h"
+#include "src/utils/parameters.h"
+#include "src/drivers/vl53l0x.h"
 
 // Vertical estimator class
 class VerticalEstimator

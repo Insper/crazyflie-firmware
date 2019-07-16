@@ -2,7 +2,7 @@
 #define vertical_controller_h
 
 #include "mbed.h"
-#include "parameters.h"
+#include "src/utils/parameters.h"
 
 // Vertical controller class
 class VerticalController

@@ -2,8 +2,8 @@
 #define horizontal_estimator_h
 
 #include "mbed.h"
-#include "parameters.h"
-#include "pmw3901.h"
+#include "src/utils/parameters.h"
+#include "src/drivers/pmw3901.h"
 
 // Vertical estimator class
 class HorizontalEstimator

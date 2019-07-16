@@ -2,7 +2,7 @@
 #define horizontal_controller_h
 
 #include "mbed.h"
-#include "parameters.h"
+#include "src/utils/parameters.h"
 
 // Horizontal controller class
 class HorizontalController
