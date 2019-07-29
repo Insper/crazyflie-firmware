@@ -14,10 +14,8 @@ class AttitudeEstimator
     AttitudeEstimator();
     // Initialize class
     void init();
-    // Predict Euler angles (rad) and angular velocities (rad/s)
-    void predict();
-    // Correct Euler angles (rad) and angular velocities (rad/s)
-    void correct();
+    // Estimate Euler angles (rad) and angular velocities (rad/s)
+    void estimate();
     // Euler angles (rad)
     float phi, theta, psi;
     // Angular velocities (rad/s)

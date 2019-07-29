@@ -51,29 +51,23 @@ void AttitudeEstimator::calibrate_gyro()
 }
 
 // Estimate Euler angles (rad) and angular velocities (rad/s) from gyroscope data
-void AttitudeEstimator::predict()
+void AttitudeEstimator::estimate()
 {
     // Read gyroscope sensor data
-    imu.read_gyro();
+    imu.read();
+    // Estimate Euler angles (rad) from accelerometer
+    float phi_a = atan2(-imu.ay,-imu.az);
+    float theta_a = atan2(imu.ax,-((imu.az>0)-(imu.az<0))*sqrt(pow(imu.ay,2)+pow(imu.az,2)));
     // Estimate angular velocities (rad/s)
     p = imu.gx - p_bias;
     q = imu.gy - q_bias;
     r = imu.gz - r_bias;
-    // Estimate Euler angles (rad)
-    phi = phi + (p+q*sin(phi)*tan(theta)+r*cos(phi)*tan(theta))*dt;
-    theta = theta + (q*cos(phi)-r*sin(phi))*dt;
-    psi = psi + (q*sin(phi)/cos(theta)+r*cos(phi)/cos(theta))*dt;
-}
-
-// Estimate euler angles (rad) and angular velocity (rad/s)
-void AttitudeEstimator::correct()
-{  
-    // Read accelerometer sensor data
-    imu.read_accel();
-    // Estimate Euler angles (rad)
-    float phi_m = atan2(-imu.ay,-imu.az);
-    float theta_m = atan2(imu.ax,-((imu.az>0)-(imu.az<0))*sqrt(pow(imu.ay,2)+pow(imu.az,2)));
-    // Ponderate Euler angles (rad) estimation from accelerometer and gyroscope
-    phi = (1.0f-rho_att)*phi+rho_att*phi_m;
-    theta = (1.0f-rho_att)*theta+rho_att*theta_m;
+    // Estimate Euler angles (rad) from gyroscope
+    float phi_g = phi + (p+q*sin(phi)*tan(theta)+r*cos(phi)*tan(theta))*dt;
+    float theta_g = theta + (q*cos(phi)-r*sin(phi))*dt;
+    float psi_g = psi + (q*sin(phi)/cos(theta)+r*cos(phi)/cos(theta))*dt;
+    // Estimate Euler angles (rad) from accelerometer and gyroscope
+    phi = (1.0f-rho_att)*phi_g+rho_att*phi_a;
+    theta = (1.0f-rho_att)*theta_g+rho_att*theta_a;
+    psi = psi_g;
 }
