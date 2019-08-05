@@ -8,7 +8,7 @@ PwmOut motor(MOTOR1);
 int main()
 {
     // Turn motor on (20% power) and off every second
-    while(1) 
+    while(true) 
     {
         motor = 0.2;
         wait(0.5);

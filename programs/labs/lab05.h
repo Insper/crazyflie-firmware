@@ -16,7 +16,7 @@ float omega_4;
 // Converts desired angular velocity (rad/s) to PWM signal (%)
 float control_motor(float omega)
 {
-    float pwm = alpha*pow(omega,2)+beta*omega;
+    float pwm = a_2*pow(omega,2)+a_1*omega;
     return pwm;
 }
 

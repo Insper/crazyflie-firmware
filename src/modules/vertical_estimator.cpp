@@ -30,8 +30,8 @@ void VerticalEstimator::correct(float phi, float theta)
     {
         float z_m = range.d*cos(phi)*cos(theta);
         float w_m = (z_m-z_m_last)/dt_range;
-        z = (1-rho_ver)*z+rho_ver*z_m;
-        w = (1-rho_ver)*w+rho_ver*w_m;
+        z = (1-alpha_ver)*z+alpha_ver*z_m;
+        w = (1-alpha_ver)*w+alpha_ver*w_m;
         z_m_last = z_m;
     }
 }

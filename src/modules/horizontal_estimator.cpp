@@ -39,10 +39,10 @@ void HorizontalEstimator::correct(float phi, float theta, float p, float q, floa
         float v_m = (flow.py*sigma-p)*d;
         float x_m = x_m_last + u_m*dt_flow;
         float y_m = y_m_last + v_m*dt_flow;
-        x = (1-rho_hor)*x+rho_hor*x_m;
-        y = (1-rho_hor)*y+rho_hor*y_m;
-        u = (1-rho_hor)*u+rho_hor*u_m;
-        v = (1-rho_hor)*v+rho_hor*v_m;
+        x = (1-alpha_hor)*x+alpha_hor*x_m;
+        y = (1-alpha_hor)*y+alpha_hor*y_m;
+        u = (1-alpha_hor)*u+alpha_hor*u_m;
+        v = (1-alpha_hor)*v+alpha_hor*v_m;
         x_m_last = x_m;
         y_m_last = y_m;
     }

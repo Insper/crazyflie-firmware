@@ -119,6 +119,6 @@ void Mixer::force_and_torques_to_angular_velocities(float f_t, float tau_phi, fl
 // Converts desired angular velocity (rad/s) to PWM signal (%)
 float Mixer::angular_velocity_to_pwm(float omega)
 {
-    float pwm = alpha*pow(omega,2)+beta*omega;
+    float pwm = a_2*pow(omega,2)+a_1*omega;
     return pwm;
 }

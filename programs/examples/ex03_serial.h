@@ -9,7 +9,7 @@ USBSerial serial;
 int main()
 {
     // Print "Hello World" every 1s
-    while(1) 
+    while(true) 
     {
         serial.printf("Hello world!\n");
         wait(1);

@@ -67,7 +67,7 @@ void AttitudeEstimator::estimate()
     float theta_g = theta + (q*cos(phi)-r*sin(phi))*dt;
     float psi_g = psi + (q*sin(phi)/cos(theta)+r*cos(phi)/cos(theta))*dt;
     // Estimate Euler angles (rad) from accelerometer and gyroscope
-    phi = (1.0f-rho_att)*phi_g+rho_att*phi_a;
-    theta = (1.0f-rho_att)*theta_g+rho_att*theta_a;
+    phi = (1.0f-alpha_att)*phi_g+alpha_att*phi_a;
+    theta = (1.0f-alpha_att)*theta_g+alpha_att*theta_a;
     psi = psi_g;
 }

@@ -15,8 +15,8 @@ const float I_zz = 29.0e-6f;        // kg.m^2
 const float l = 33e-3f;             // m
 
 // Motor constants 
-const float alpha = 1.16e-07f;
-const float beta = 7.149e-10f;
+const float a_2 = 1.16e-07f;
+const float a_1 = 7.149e-10f;
 
 // Propeller constants
 const float kl = 1.726e-08f;        // N.s^2/rad^2
@@ -39,7 +39,7 @@ const float dt_range = 1.0f/f_range;// s
 const float dt_flow = 1.0f/f_flow;  // s 
 
 // Attitude estimator weighthing (accelerometer X gyroscope)
-const float rho_att = 0.01f;        
+const float alpha_att = 0.01f;        
 
 // Attitude controller gains (roll/pitch)
 const float Ts_phi = 0.4f;//0.3f;         // s
@@ -60,7 +60,7 @@ const float kd_psi = pow(omega_n_psi,2.0f);
 const float kp_psi = 2.0f*zeta_psi*omega_n_psi; 
 
 // Vertical estimator weighthing (measurement X prediction)
-const float rho_ver = 0.3f;        
+const float alpha_ver = 0.3f;        
 
 // Vertical controller gains (z)
 const float Ts_z = 2.0f;            // s
@@ -76,7 +76,7 @@ const float resolution = 420.0f;
 const float sigma = (1.0f/dt_flow)*(2.0f*tan((gamma*pi/180.0f)/2.0f))/resolution; 
 
 // Horizontal estimator weighthing (measurement X prediction)
-const float rho_hor = 0.4f;  
+const float alpha_hor = 0.4f;  
 
 // Horizontal controller gains (x/y)
 const float Ts_x = 4.0f;            // s
