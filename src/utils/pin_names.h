@@ -7,7 +7,6 @@
 const PinName MOTOR1 = PA_1;
 const PinName MOTOR2 = PB_11;
 const PinName MOTOR3 = PA_15;
-//const PinName MOTOR4 = PB_9_ALT1;
 const PinName MOTOR4 = PB_9;
 
 // Led pins
