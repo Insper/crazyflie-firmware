@@ -2,7 +2,7 @@
 #include "crazyflie.h"
 #include "USBSerial.h"
 
-// Define USB serial
+// Define serial object
 USBSerial serial;
 
 // Define range sensor object
@@ -14,10 +14,10 @@ int main()
     // Initialize range sensor object
     range.init();
     // Print range readings every 0.1s
-    while(1) 
+    while(true) 
     {
         range.read();
-        serial.printf("Range [m]: %6.3f \n",range.d);
+        serial.printf("Range [m]: %6.2f \n",range.d);
         wait(0.1);
     }
 }
