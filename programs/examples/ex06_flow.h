@@ -2,7 +2,7 @@
 #include "crazyflie.h"
 #include "USBSerial.h"
 
-// Define USB serial
+// Define serial object
 USBSerial serial;
 
 // Define flow sensor object
@@ -14,9 +14,10 @@ int main()
     // Initialize flow sensor object
     flow.init();
     // Print flow readings every 0.1s
-    while(1) {
+    while(true) 
+    {
         flow.read();
-        serial.printf("Flow [px]: %6.2f %6.2f \n", flow.px, flow.py);
-        wait(0.1f);
+        serial.printf("Flow [px]: %6.0f %6.0f \n",flow.px,flow.py);
+        wait(0.1);
     }
 }
