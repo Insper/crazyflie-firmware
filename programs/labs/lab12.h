@@ -48,8 +48,7 @@ int main()
         if (flag) 
         {
             flag = false;
-            att_est.predict();
-            att_est.correct();
+            att_est.estimate();
             ver_est.predict();
             if (flag_range)
             {
