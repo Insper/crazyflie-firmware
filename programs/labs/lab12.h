@@ -13,6 +13,12 @@ HorizontalController hor_cont;
 // Ticker objects
 Ticker tic, tic_range;
 
+// Timer objects
+Timer tim;
+
+// Time variable
+float t = 0.0;
+
 // Interrupt flag and counter variables
 bool flag, flag_range;
 
@@ -38,24 +44,38 @@ int main()
     att_est.init();
     ver_est.init();
     hor_est.init();
-    // Initialize interrupts
+    // Initialize interrupts and timers
     tic.attach(&callback, dt);
     tic_range.attach(&callback_range, dt_range);
+    tim.start();
     // Arm motors and run controller while stable
     mixer.arm();
-    while(abs(att_est.phi) <= pi/4.0f && abs(att_est.theta) <= pi/4.0f &&  abs(att_est.p) <= 4.0f*pi && abs(att_est.q) <= 4.0f*pi && abs(att_est.r) <= 4.0f*pi) 
+    while(abs(att_est.phi) <= pi/4.0f && abs(att_est.theta) <= pi/4.0f &&  abs(att_est.p) <= 4.0f*pi && abs(att_est.q) <= 4.0f*pi && abs(att_est.r) <= 4.0f*pi && t <= 8.0) 
     {
+        t = tim.read();
+        if (t <= 1.0)
+        {
+            z_r = t/2.0;
+        }
+        else if (t >= 5.0)
+        {
+            z_r = (6.0-t)/2.0;
+        }
+        else
+        {
+            z_r = 0.5;
+        }
         if (flag) 
         {
             flag = false;
             att_est.estimate();
-            ver_est.predict();
+            ver_est.predict(ver_cont.f_t/(cos(att_est.phi)*cos(att_est.theta)));
             if (flag_range)
             {
                 flag_range = false;
                 ver_est.correct(att_est.phi,att_est.theta);    
             }
-            hor_est.predict();
+            hor_est.predict(hor_cont.phi_r,hor_cont.theta_r);
             if (ver_est.z >= 0.05f)
             {
                 hor_est.correct(att_est.phi,att_est.theta,att_est.p,att_est.q,ver_est.z);

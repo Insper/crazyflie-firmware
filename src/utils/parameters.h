@@ -33,17 +33,15 @@ const float motor_test_off_time = 0.15f;
 // Interrupt frequencies
 const float f = 500.0f;             // Hz
 const float f_range = 20.0f;        // Hz 
-const float f_flow = 500.0f;        // Hz 
 const float dt = 1.0f/f;            // s
 const float dt_range = 1.0f/f_range;// s
-const float dt_flow = 1.0f/f_flow;  // s 
 
 // Attitude estimator weighthing (accelerometer X gyroscope)
 const float alpha_att = 0.01f;        
 
 // Attitude controller gains (roll/pitch)
-const float Ts_phi = 0.4f;//0.3f;         // s
-const float OS_phi = 0.010f;//0.005f;       // %
+const float Ts_phi = 0.3f;//0.4f;         // s
+const float OS_phi = 0.005f;//0.010f;       // %
 const float zeta_phi = abs(log(OS_phi))/sqrt(pow(log(OS_phi),2)+pow(pi,2));
 const float omega_n_phi = 4.0f/(Ts_phi*zeta_phi);
 const float kp_phi = pow(omega_n_phi,2.0f);       
@@ -73,10 +71,10 @@ const float kd_z = 2.0f*zeta_z*omega_n_z;
 // Optical flow sensor constant
 const float gamma = 42.0f;
 const float resolution = 420.0f;
-const float sigma = (1.0f/dt_flow)*(2.0f*tan((gamma*pi/180.0f)/2.0f))/resolution; 
+const float sigma = (1.0f/dt)*(2.0f*tan((gamma*pi/180.0f)/2.0f))/resolution; 
 
 // Horizontal estimator weighthing (measurement X prediction)
-const float alpha_hor = 0.4f;  
+const float alpha_hor = 0.3f;  
 
 // Horizontal controller gains (x/y)
 const float Ts_x = 4.0f;            // s

@@ -14,7 +14,7 @@ class VerticalEstimator
     // Initialize class
     void init();
     // Predict vertical position and velocity from model
-    void predict();
+    void predict(float f_t);
     // Correct vertical position and velocity with measurement
     void correct(float phi, float theta);
     // Vertical position (m) and velocity (m/s) estimations
@@ -22,8 +22,6 @@ class VerticalEstimator
   private:
     // Range sensor object
     VL53L0X range;
-    // Last vertical position (m) measurement
-    float z_m_last;
 };
 
 #endif

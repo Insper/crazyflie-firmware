@@ -14,7 +14,7 @@ class HorizontalEstimator
     // Initialize class
     void init();
     // Predict horizontal velocity from model
-    void predict();
+    void predict(float phi_r, float theta_r);
     // Correct horizontal velocity with measurement
     void correct(float phi, float theta, float p, float q, float z);
     // Horizontal positions (m) and velocities (m/s) estimations
@@ -22,8 +22,6 @@ class HorizontalEstimator
   private:
     // Flow sensor object
     PMW3901 flow;
-    // Last horizontal position (m) measurements
-    float x_m_last, y_m_last;
     
 };
 
