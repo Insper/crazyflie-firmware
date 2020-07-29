@@ -1,5 +1,4 @@
-*.mbed
-*.DS_Store
+.mbed
 BUILD
 mbed-os
 USBDevice
