@@ -3,19 +3,19 @@
 // Class constructor
 BMI088::BMI088(PinName sda, PinName scl) : i2c(sda, scl)
 {
+    // Configure I2C frequency
+    i2c.frequency(100000);
 }
  
 // Initialize sensor (return true if connection succeeded)
 bool BMI088::init()
 {
-    // Setup I2C bus
-    setup_i2c();
-    // Test I2C connection
-    if (test_i2c()) 
+    // Read accelerometer and gyroscope device identity and check if they are equal to 0x1E and 0x0F
+    if ((read_reg(ACC_ADD, ACC_CHIP_ID) == 0x1E) && (read_reg(GYR_ADD,GYR_CHIP_ID) == 0x0F))
     {
-        // Setup accelerometer and gyroscope
-        setup_acc();
-        setup_gyr();
+        // Initialize accelerometer and gyroscope
+        init_acc();
+        init_gyr();
         return true;
     } 
     else 
@@ -24,62 +24,23 @@ bool BMI088::init()
     }
 }
  
-// Read sensor data
+// Read accelerometer and gyroscope data
 void BMI088::read()
 {
-    // Read accelerometer and gyroscope data
     read_acc();
     read_gyr();
 }
  
-// Write data into register on given I2C bus address
-void BMI088::write_reg(uint8_t add, uint8_t reg, uint8_t data)
+// Initialize accelerometer
+void BMI088::init_acc(acc_range a_range, acc_odr a_odr)
 {
-    // Register address and data that will be writed
-    char i2c_reg_data[2] = {reg, data};
-    // Point to register address and write data
-    i2c.write(add, i2c_reg_data, 2);
-}
- 
-// Read data from register on given I2C bus address
-char BMI088::read_reg(uint8_t add, uint8_t reg)
-{
-    // Register address
-    char i2c_reg[1] = {reg};
-    // Data that will be readed
-    char i2c_data[1];
-    // Point to register address
-    i2c.write(add, i2c_reg, 1);
-    // Read data
-    i2c.read(add, i2c_data, 1);
-    // Return readed data
-    return i2c_data[0];
-}
-
-// Setup I2C bus
-void BMI088::setup_i2c()
-{
-    // Setup I2C bus frequency to 100kHz
-    i2c.frequency(100000);
-}
- 
-// Test I2C connection
-bool BMI088::test_i2c()
-{
-    // Read accelerometer and gyroscope device identity and check if they are equal to 0x1E and 0x0F
-    return ((read_reg(ACC_ADD, ACC_CHIP_ID) == 0x1E) && (read_reg(GYR_ADD,GYR_CHIP_ID) == 0x0F));
-}
- 
-// Setup accelerometer
-void BMI088::setup_acc(acc_range a_range, acc_odr a_odr)
-{
-    // Setup full-scale range
+    // Configure full-scale range
     write_reg(ACC_ADD, ACC_RANGE, (0x00 << 2) | (a_range));
-    // Setup output data rate
+    // Configure output data rate
     write_reg(ACC_ADD, ACC_CONF, (0X0A << 4) | (a_odr));
-    // Setup active mode 
+    // Put it in active mode 
     write_reg(ACC_ADD, ACC_PWR_CTRL, 0x04);
-    // Adjust resolution [m/s^2 / bit] accordingly to choosed full-scale range
+    // Adjust resolution [m/s^2 / bit] according to choosed full-scale range
     switch (a_range) 
     {
         case ACC_RANGE_3G:
@@ -97,14 +58,14 @@ void BMI088::setup_acc(acc_range a_range, acc_odr a_odr)
     }
 }
  
-// Setup gyroscope
-void BMI088::setup_gyr(gyr_range g_range, gyr_odr g_odr)
+// Initialize gyroscope
+void BMI088::init_gyr(gyr_range g_range, gyr_odr g_odr)
 {
-    // Write configuration data
+    // Configure full-scale range
     write_reg(GYR_ADD, GYR_RANGE, (0b000000 << 2) | (g_range));
-    // Write configuration data
-    write_reg(GYR_ADD, GYRO_BANDWIDTH, (0b100000 << 2) | (g_odr));
-    // Adjust resolution [rad/s / bit] accordingly to choose scale
+    // Configure output data rate
+    write_reg(GYR_ADD, GYR_BANDWIDTH, (0b100000 << 2) | (g_odr));
+    // Adjust resolution [rad/s / bit] according to choosed full-scale range
     switch (g_range) 
     {
         case GYR_RANGE_125DPS:
@@ -146,7 +107,7 @@ void BMI088::read_acc()
     az = -az_raw*a_res;
 }
  
-// Read accelerometer data
+// Read gyroscope data
 void BMI088::read_gyr()
 {
     // Register address
@@ -165,4 +126,28 @@ void BMI088::read_gyr()
     gx =  gx_raw*g_res;
     gy =  gy_raw*g_res;
     gz =  gz_raw*g_res;
+}
+ 
+// Read data from register on given I2C bus address
+uint8_t BMI088::read_reg(uint8_t add, uint8_t reg)
+{
+    // Register address
+    char i2c_reg[1] = {reg};
+    // Data that will be readed
+    char i2c_data[1];
+    // Point to register address
+    i2c.write(add, i2c_reg, 1);
+    // Read data
+    i2c.read(add, i2c_data, 1);
+    // Return readed data
+    return i2c_data[0];
+}
+
+// Write data into register on given I2C bus address
+void BMI088::write_reg(uint8_t add, uint8_t reg, uint8_t data)
+{
+    // Register address and data that will be writed
+    char i2c_reg_data[2] = {reg, data};
+    // Point to register address and write data
+    i2c.write(add, i2c_reg_data, 2);
 }

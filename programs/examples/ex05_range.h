@@ -6,7 +6,8 @@
 USBSerial serial;
 
 // Define range sensor object
-VL53L0X range(E_SDA,E_SCL);
+// VL53L0X range(E_SDA,E_SCL);
+VL53L1X range(E_SDA,E_SCL);
 
 // Main program
 int main()
