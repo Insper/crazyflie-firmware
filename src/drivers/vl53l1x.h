@@ -7,13 +7,13 @@
 #define VL53L1X_ADD                                           0x29 << 1 
 // Device identity register address 
 #define VL53L1X_ID                                            0x010F 
-// Timming budget register address
+// Timming budget register addresses
 #define VL53L1_RANGE_CONFIG__TIMEOUT_MACROP_A_HI              0x005E
 #define VL53L1_RANGE_CONFIG__TIMEOUT_MACROP_B_HI              0x0061
-// Intermeasurement period register address
+// Intermeasurement period register addresses
 #define VL53L1_RESULT__OSC_CALIBRATE_VAL                      0x00DE
 #define VL53L1_SYSTEM__INTERMEASUREMENT_PERIOD                0x006C 
-// Range data address 
+// Range data address
 #define VL53L1_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0 0x0096
 
 // Default configuration register addresses and data
