@@ -3,7 +3,7 @@
 // Class constructor
 BMI088::BMI088(PinName sda, PinName scl) : i2c(sda, scl)
 {
-    // Configure I2C frequency
+    // Configure I2C frequency t0 100kHz
     i2c.frequency(100000);
 }
  

@@ -1,32 +1,8 @@
 #ifndef vl53l0x_h
 #define vl53l0x_h
 #include "mbed.h"
-//#include "millis.h"
 
-/** LPS25H (barometer sensor) class
- *
- * Example code (print pressure and altitude data on serial port every 0.2 second):
- * @code
- * #include "mbed.h"
- * #include "USBSerial.h"
- * #include "VL53L0X.h"
- *
- * USBSerial pc;
- * VL53L0X range(PB_7,PB_6);
- * 
- * int main() 
- * {
- *     range.init();
- *     while(1)
- *     {
- *          range.read();
- *          pc.printf("Range [m]: %6.2f \n\n", range.z);
- *          wait(0.2);
- *     }
- * }
- * @endcode
- * (Need to target to NUCLEO-F401RE board platform)
- */
+// VL53L0X (range sensor) class
 class VL53L0X
 {
   public:

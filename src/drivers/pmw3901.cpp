@@ -11,7 +11,7 @@ PMW3901::PMW3901(PinName mosi, PinName miso, PinName sclk, PinName csel) : spi(m
     spi.frequency(2000000);
 }
     
-// Initialize optical flow
+// Initialize  sensor (return true if connection succeeded)
 bool PMW3901::init()
 {
     // Read device identity and check if it is equal to 0x49

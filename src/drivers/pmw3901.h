@@ -23,11 +23,11 @@ class PMW3901
     public:
         // Class constructor
         PMW3901(PinName mosi, PinName miso, PinName sclk, PinName csel); 
-        // Initialize optical flow
+        // Initialize sensor
         bool init();
         // Read optical flow data
         void read();
-        // Optical flow data in x-axis (px) **/
+        // Optical flow data in x and y axis [pixels]
         float px, py;
     private:
         // SPI bus

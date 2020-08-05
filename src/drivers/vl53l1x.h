@@ -3,8 +3,9 @@
  
 #include "mbed.h"
  
-// I2C bus address (shift 1 bit left because mbed utilizes 8-bit addresses and not 7-bit)
+// Device I2C bus address (shift 1 bit left because mbed utilizes 8-bit addresses and not 7-bit)
 #define VL53L1X_ADD                                           0x29 << 1 
+
 // Device identity register address 
 #define VL53L1X_ID                                            0x010F 
 // Timming budget register addresses

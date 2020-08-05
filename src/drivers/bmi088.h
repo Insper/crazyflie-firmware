@@ -3,8 +3,10 @@
  
 #include "mbed.h"
  
-// Accelerometer I2C bus address (shift 1 bit left because mbed utilizes 8-bit addresses and not 7-bit)
+// Accelerometer and gyroscope I2C bus address (shift 1 bit left because mbed utilizes 8-bit addresses and not 7-bit)
 #define ACC_ADD       0b0011000 << 1  
+#define GYR_ADD       0b1101001 << 1  
+
 // Accelerometer device identity register address 
 #define ACC_CHIP_ID   0x00
 // Accelerometer configuration registers addresses
@@ -19,8 +21,6 @@
 #define ACC_Z_LSB     0x16
 #define ACC_Z_MSB     0x17
 
-// Gyroscope I2C bus address  (shift 1 bit left because mbed utilizes 8-bit addresses and not 7-bit)
-#define GYR_ADD       0b1101001 << 1  
 // Gyroscope device identity  
 #define GYR_CHIP_ID   0x00
 // Gyroscope configuration registers addresses
@@ -92,9 +92,9 @@ class BMI088
         float gx, gy, gz;
     private:     
         // Initialize accelerometer
-        void init_acc(acc_range a_scale = ACC_RANGE_12G, acc_odr a_odr = ACC_ODR_100);
+        void init_acc(acc_range a_scale = ACC_RANGE_6G, acc_odr a_odr = ACC_ODR_100);
         // Initialize gyroscope
-        void init_gyr(gyr_range g_scale = GYR_RANGE_500DPS, gyr_odr g_odr = GYR_ODR_2000);
+        void init_gyr(gyr_range g_scale = GYR_RANGE_2000DPS, gyr_odr g_odr = GYR_ODR_2000);
         // Read accelerometer data
         void read_acc();
         // Read gyroscope data

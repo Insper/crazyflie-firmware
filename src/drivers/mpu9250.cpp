@@ -3,21 +3,22 @@
 // Class constructor
 MPU9250::MPU9250(PinName sda, PinName scl) : i2c(sda, scl)
 {
+    // Configure I2C frequency t0 100kHz
+    i2c.frequency(100000);
 }
  
 // Initialize sensor (return true if connection succeeded)
 bool MPU9250::init()
 {
-    // Setup I2C bus
-    setup_i2c();
-    // Test I2C bus
-    if (test_i2c()) 
+
+    // Read device identity and check if it is equal to 0x71
+    if (read_reg(MPU9250_ADDRESS, WHO_AM_I) == 0x71) 
     {
-        // Setup auxiliary I2C bus pins
-        setup_aux_i2c();
-        // Setup accelerometer and gyroscope
-        setup_acc();
-        setup_gyr();
+        // Initialize auxiliary I2C bus pins
+        write_reg(MPU9250_ADDRESS, INT_PIN_CFG, 0b00000010);
+        // Initialize accelerometer and gyroscope
+        init_acc();
+        init_gyr();
         return true;
     } 
     else 
@@ -26,65 +27,19 @@ bool MPU9250::init()
     }
 }
  
-// Read sensor data
+// Read accelerometer and gyroscope data
 void MPU9250::read()
 {
-    // Read accelerometer and gyroscope data
     read_acc();
     read_gyr();
 }
  
-// Write data into register on given I2C bus address
-void MPU9250::write_reg(uint8_t add, uint8_t reg, uint8_t data)
+// Initialize accelerometer
+void MPU9250::init_acc(acc_range a_range)
 {
-    // Register address and data that will be writed
-    char i2c_reg_data[2] = {reg, data};
-    // Point to register address and write data
-    i2c.write(add, i2c_reg_data, 2);
-}
- 
-// Read data from register on given I2C bus address
-char MPU9250::read_reg(uint8_t add, uint8_t reg)
-{
-    // Register address
-    char i2c_reg[1] = {reg};
-    // Data that will be readed
-    char i2c_data[1];
-    // Point to register address
-    i2c.write(add, i2c_reg, 1);
-    // Read data
-    i2c.read(add, i2c_data, 1);
-    // Return readed data
-    return i2c_data[0];
-}
-
-// Setup I2C bus
-void MPU9250::setup_i2c()
-{
-    // Setup I2C bus frequency to 100kHz
-    i2c.frequency(100000);
-}
- 
-// Test I2C bus
-bool MPU9250::test_i2c()
-{
-    // Read device identity and check if it is equal to 0x71
-    return (read_reg(MPU9250_ADDRESS, WHO_AM_I) == 0x71);
-}
- 
-// Setup auxiliary I2C bus pins
-void MPU9250::setup_aux_i2c()
-{
-    // Setup auxiliary I2C bus pins
-    write_reg(MPU9250_ADDRESS, INT_PIN_CFG, 0b00000010);
-}
- 
-// Setup accelerometer configurations (full-scale range)
-void MPU9250::setup_acc(acc_range a_range)
-{
-    // Write configuration data
+    // Configure full-scale range
     write_reg(MPU9250_ADDRESS, ACC_CONFIG_1, (0b000 << 5) | (a_range << 3) | 0b000);
-    // Adjust resolution [m/s^2 / bit] accordingly to choose scale (g)
+    // Adjust resolution [m/s^2 / bit] according to choosed full-scale range
     switch (a_range) 
     {
         case ACC_RANGE_2G:
@@ -102,12 +57,12 @@ void MPU9250::setup_acc(acc_range a_range)
     }
 }
  
-// Setup gyroscope configurations (full-scale range)
-void MPU9250::setup_gyr(gyr_range g_range)
+// Initialize gyroscope
+void MPU9250::init_gyr(gyr_range g_range)
 {
-    // Write configuration data
+    // Configure full-scale range
     write_reg(MPU9250_ADDRESS, GYR_CONFIG, (0b000 << 5) | (g_range << 3) | 0b000);
-    // Adjust resolution [rad/s / bit] accordingly to choose scale
+    // Adjust resolution [rad/s / bit] according to choosed full-scale range
     switch (g_range) 
     {
         case GYR_RANGE_250DPS:
@@ -165,4 +120,28 @@ void MPU9250::read_gyr()
     gx = -gy_raw*g_res;
     gy =  gx_raw*g_res;
     gz =  gz_raw*g_res;
+}
+ 
+// Read data from register on given I2C bus address
+uint8_t MPU9250::read_reg(uint8_t add, uint8_t reg)
+{
+    // Register address
+    char i2c_reg[1] = {reg};
+    // Data that will be readed
+    char i2c_data[1];
+    // Point to register address
+    i2c.write(add, i2c_reg, 1);
+    // Read data
+    i2c.read(add, i2c_data, 1);
+    // Return readed data
+    return i2c_data[0];
+}
+
+// Write data into register on given I2C bus address
+void MPU9250::write_reg(uint8_t add, uint8_t reg, uint8_t data)
+{
+    // Register address and data that will be writed
+    char i2c_reg_data[2] = {reg, data};
+    // Point to register address and write data
+    i2c.write(add, i2c_reg_data, 2);
 }
