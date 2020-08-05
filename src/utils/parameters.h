@@ -1,6 +1,8 @@
 #ifndef parameters_h
 #define parameters_h
 
+#include <cmath>
+
 // Physical constants
 const float pi = 3.1416f;
 const float g = 9.81f;              // m/s^2
