@@ -4,14 +4,14 @@
 #include <cmath>
 
 // Physical constants
-const float pi = 3.1416f;
-const float g = 9.81f;              // m/s^2
+const float pi = 3.1416;
+const float g = 9.81;       // m/s^2
 
 // Quadcopter dimensions
-const float m = 30e-3f;             // kg
-const float I_xx = 16.0e-6f;        // kg.m^2
-const float I_yy = 16.0e-6f;        // kg.m^2
-const float I_zz = 29.0e-6f;        // kg.m^2
-const float l = 33e-3f;             // m
+const float m = 30.0e-3;    // kg
+const float I_xx = 16.0e-6; // kg.m^2
+const float I_yy = 16.0e-6; // kg.m^2
+const float I_zz = 29.0e-6; // kg.m^2
+const float l = 33.0e-3;    // m
 
 #endif
