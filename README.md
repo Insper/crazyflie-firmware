@@ -1,10 +1,10 @@
-# Bitcraze Crazyflie 2.0 Firmware  
+# Bitcraze Crazyflie 2.0/2.1 Firmware  
 
-This repository contains the source code for the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) firmware utilizing [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/).
+This repository contains the source code for the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/)/[2.1](https://www.bitcraze.io/products/crazyflie-2-1/firmware) utilizing [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/).
 
 ## Programming
 
-Below are step by step instructions to program the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/).
+Below are step by step instructions to program the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/)/[2.1](https://www.bitcraze.io/products/crazyflie-2-1/firmware).
 
 ### A) Fork
 
@@ -14,15 +14,17 @@ The first step is to fork this repository, which means to create a copy of this 
 
 ### B) Import
 
-After you have forked the repository, you should import it to [Mbed Studio](https://os.mbed.com/studio/), an IDE designed specific for Mbed OS (Windows/Mac):
+After you have forked the repository, you should import it to [Mbed Studio](https://os.mbed.com/studio/), an IDE designed specific for [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/) (Windows/Mac/Linux):
 
 1. Install and open [Mbed Studio](https://os.mbed.com/studio/)
 2. Click on ```File```>```Import Program...```
 3. Paste ```https://github.com/user_name/crazyflie-firmware/``` under ```URL``` and then click ```Add Program```
 
+Don't forget to change ```user_name```with your GitHub username.
+
 ### C) Target
 
-Next step is to set the target you'll be utilizing, that's it, the microcontroller you will be developing for. The microcontroller from [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) ([STM32F405RG](https://www.st.com/en/microcontrollers-microprocessors/stm32f405rg.html)) is not available for [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/). However, the microcontroller from [Seeed Arch Max](https://os.mbed.com/platforms/Seeed-Arch-Max/) development board ([STM32F407VE](https://www.st.com/en/microcontrollers-microprocessors/stm32f407ve.html)) is very similar and can be utilized with little adjustments:
+Next step is to set the target you'll be utilizing, that's it, the microcontroller you will be developing for. The microcontroller from [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/)/[2.1](https://www.bitcraze.io/products/crazyflie-2-1/firmware) ([STM32F405RG](https://www.st.com/en/microcontrollers-microprocessors/stm32f405rg.html)) is not available for [ARM Mbed OS](https://www.mbed.com/en/platform/mbed-os/). However, the microcontroller from [Seeed Arch Max](https://os.mbed.com/platforms/Seeed-Arch-Max/) development board ([STM32F407VE](https://www.st.com/en/microcontrollers-microprocessors/stm32f407ve.html)) is very similar and can be utilized with little adjustments:
 
 1. Click on ```Target``` and choose ```Seeed Arch Max (ARCH-MAX)```
 2. Navigate to file ```mbed-os``` > ```targets``` > ```TARGET_STM``` > ```TARGET_STM32F4``` > ```TARGET_STM32F407xG``` > ```device``` > ```TOOLCHAIN_ARM_STD``` > ```STM32F407xx.sct``` and modify the code of line 9:
@@ -46,7 +48,7 @@ Last step is to send this binary file to your microcontroller, which is called f
 
 1. Install [crazyflie-clients-python](https://github.com/bitcraze/crazyflie-clients-python)
 2. Plug in the [Bitcraze Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/)
-3. Put the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/) in program mode
+3. Put the [Bitcraze Crazyflie 2.0](https://www.bitcraze.io/crazyflie-2/)/[2.1](https://www.bitcraze.io/products/crazyflie-2-1/firmware) in program mode:
 - Turn off the drone
 - Hold down the push button for about 1 second until you the blue led starts blinking
 - Release the push button button
