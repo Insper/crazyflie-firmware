@@ -14,4 +14,11 @@ const float I_yy = 16.0e-6; // kg.m^2
 const float I_zz = 29.0e-6; // kg.m^2
 const float l = 33.0e-3;    // m
 
+const float a2 = 1.1600e-07; 
+const float a1 = 4.4880e-12; 
+
+//&nbspParametro&nbspde&nbspsustentacao
+const float kt = 1.719e-08; //&nbspNs2
+const float kd=1.396e-10; //&nbspNms2
+
 #endif
