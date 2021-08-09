@@ -6,8 +6,8 @@
 USBSerial serial;
 
 // Define range sensor object
-VL53L0X range(E_SDA,E_SCL); // Crazyflie 2.0 range sensor
-// VL53L1X range(E_SDA,E_SCL); // Crazyflie 2.1 range sensor
+VL53L0X range(E_SDA,E_SCL); // FLow deck range sensor
+// VL53L1X range(E_SDA,E_SCL); // Flow deck v2 range sensor
 
 // Main program
 int main()
