@@ -6,8 +6,7 @@
 USBSerial serial;
 
 // Define range sensor object
-VL53L0X range(E_SDA,E_SCL); // FLow deck range sensor
-// VL53L1X range(E_SDA,E_SCL); // Flow deck v2 range sensor
+VL53L1X range(E_SDA,E_SCL);
 
 // Main program
 int main()

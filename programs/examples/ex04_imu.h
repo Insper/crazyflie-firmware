@@ -6,8 +6,7 @@
 USBSerial serial;
 
 // Define IMU sensor object
-MPU9250 imu(IMU_SDA,IMU_SCL); // Crazyflie 2.0 IMU sensor
-// BMI088 imu(IMU_SDA,IMU_SCL); // Crazyflie 2.1 IMU sensor
+BMI088 imu(IMU_SDA,IMU_SCL);
 
 // Main program
 int main() 
